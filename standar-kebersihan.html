@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINTA - Standar Kebersihan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/standar-kebersihan.css">
+</head>
+<body>
+    <!-- Sidebar will be loaded here by JavaScript -->
+    <div id="sidebar-container"></div>
+
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-left">
+                <i class="fa-solid fa-bars" style="cursor: pointer;" id="sidebarToggle"></i>
+                <span>Selamat Datang, Pengadilan Negeri Surabaya</span>
+            </div>
+            <div class="header-right">
+                <div class="user-profile">
+                    <div class="user-avatar">A</div>
+                    <div class="user-info">
+                        <h4>Administrator</h4>
+                        <p>admin</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-arrow-right-from-bracket" style="color: #7f8c8d; cursor: pointer; margin-left: 10px;"></i>
+            </div>
+        </header>
+
+        <div class="content-body">
+            <div class="page-title">
+                <h3>Standar Kebersihan</h3>
+                <p>Kelola standar kebersihan untuk setiap ruangan</p>
+            </div>
+
+            <div class="table-card">
+                <div class="card-header-wrapper">
+                    <a href="parameter-sistem.html" class="back-link">
+                        <i class="fa-solid fa-arrow-left"></i> Kembali ke Daftar Ruangan
+                    </a>
+
+                    <div class="header-action-row">
+                        <div class="header-title-group">
+                            <h4>Standar Kebersihan untuk <span id="roomName" class="room-title">Ruang Sidang A</span></h4>
+                            <p>Kelola standar kebersihan khusus untuk ruangan ini</p>
+                        </div>
+                        <button class="btn-add-green" onclick="tambahStandar()">
+                            <i class="fa-solid fa-plus"></i> Tambah Standar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">Kriteria</th>
+                                <th style="width: 45%;">Keterangan</th>
+                                <th style="width: 15%;">Nilai Maksimal</th>
+                                <th style="width: 15%;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="standarList">
+                            <!-- Standar akan dimuat di sini oleh JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Tambah Standar -->
+    <div id="tambahStandarModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4><i class="fa-solid fa-plus-circle"></i> Tambah Standar Baru</h4>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="standarForm" class="form-container">
+                    <div class="form-group">
+                        <label for="kriteria">Kriteria <span class="required">*</span></label>
+                        <input type="text" id="kriteria" name="kriteria" required 
+                               placeholder="Contoh: Lantai bersih tanpa debu">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="keterangan">Keterangan <span class="required">*</span></label>
+                        <textarea id="keterangan" name="keterangan" rows="3" required
+                                 placeholder="Deskripsi detail kriteria kebersihan"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="nilai">Nilai Maksimal <span class="required">*</span></label>
+                        <input type="number" id="nilai" name="nilai" min="1" max="100" value="10" required>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" onclick="tutupModal()">Batal</button>
+                        <button type="submit" class="btn-submit">Simpan Standar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit Standar -->
+    <div id="editStandarModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4><i class="fa-solid fa-pen-to-square"></i> Edit Standar</h4>
+                <span class="close-modal" onclick="tutupModal('editStandarModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="editStandarForm" class="form-container">
+                    <input type="hidden" id="editStandarId">
+                    <div class="form-group">
+                        <label for="editKriteria">Kriteria <span class="required">*</span></label>
+                        <input type="text" id="editKriteria" name="kriteria" required 
+                               placeholder="Contoh: Lantai bersih tanpa debu">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editKeterangan">Keterangan <span class="required">*</span></label>
+                        <textarea id="editKeterangan" name="keterangan" rows="3" required
+                                 placeholder="Deskripsi detail kriteria kebersihan"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editNilai">Nilai Maksimal <span class="required">*</span></label>
+                        <input type="number" id="editNilai" name="nilai" min="1" max="100" required>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" onclick="tutupModal('editStandarModal')">Batal</button>
+                        <button type="submit" class="btn-submit">Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load sidebar and initialize after DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load sidebar
+            if (typeof loadSidebar === 'function') {
+                loadSidebar();
+            } else {
+                console.error('loadSidebar function not found');
+            }
+            
+            // Initialize other scripts
+            if (typeof initStandarKebersihan === 'function') {
+                initStandarKebersihan();
+            }
+        });
+    </script>
+    <script src="js/main.js"></script>
+    <script src="js/standar-kebersihan.js"></script>
+</body>
+</html>

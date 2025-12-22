@@ -1,0 +1,329 @@
+/* Task Page Specific Styles */
+:root {
+    --primary-blue: #1877f2;
+    --text-muted: #7f8c8d;
+    --border-color: #eee;
+    --card-bg: #ffffff;
+}
+
+/* Back Link */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #64748b;
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 15px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.back-link:hover { 
+    color: var(--primary-blue); 
+}
+
+/* Header Action Row */
+.header-action-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 15px;
+}
+
+.header-title-group h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.header-title-group p {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* Table Styles */
+.td-task-name { 
+    font-weight: 500; 
+    color: #111827; 
+}
+
+.td-desc { 
+    color: #6b7280; 
+    max-width: 300px;
+    font-size: 13px;
+}
+
+/* Card Header Wrapper */
+.card-header-wrapper {
+    padding: 25px;
+    padding-bottom: 10px;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .header-action-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .btn-add {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.close-modal {
+    font-size: 24px;
+    cursor: pointer;
+    color: #777;
+    transition: color 0.2s;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+/* Form Container */
+.form-container {
+    padding: 5px;
+}
+
+/* Form Sections */
+.form-section {
+    margin-bottom: 25px;
+    padding: 0 5px;
+}
+
+.form-section-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 15px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.input-group {
+    position: relative;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #444;
+}
+
+.required {
+    color: #e74c3c;
+    margin-left: 2px;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    background-color: #fff;
+}
+
+/* Input Focus States */
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.1);
+    outline: none;
+}
+
+/* Textarea */
+textarea {
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.5;
+}
+
+/* Form Rows */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin: 0 -5px;
+}
+
+.form-row .form-group {
+    flex: 1;
+    min-width: 0;
+    margin-bottom: 0;
+}
+
+/* Select Wrapper */
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper::after {
+    content: '';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #666;
+}
+
+/* Input with Icon */
+.input-with-icon {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    font-size: 13px;
+    pointer-events: none;
+}
+
+/* Hints */
+.hint {
+    font-size: 12px;
+    color: #777;
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+/* Buttons */
+.btn-cancel,
+.btn-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    gap: 6px;
+}
+
+.btn-cancel {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    color: #555;
+}
+
+.btn-cancel:hover {
+    background: #f1f3f5;
+    border-color: #d0d0d0;
+}
+
+.btn-submit {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    box-shadow: 0 2px 4px rgba(24, 119, 242, 0.2);
+}
+
+.btn-submit:hover {
+    background: #1a73e8;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(24, 119, 242, 0.25);
+}
+
+.btn-submit i,
+.btn-cancel i {
+    font-size: 12px;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .btn-cancel,
+    .btn-submit {
+        width: 100%;
+    }
+}
