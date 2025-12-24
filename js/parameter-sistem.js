@@ -33,7 +33,7 @@ function tutupModal(modalId) {
     }
 }
 
-// Function to show tambah ruangan modal
+// Function to show tambah ruangan modal - will be called only when button is clicked
 function tambahRuangan() {
     // Reset form
     const form = document.getElementById('formTambahRuangan');
@@ -41,6 +41,13 @@ function tambahRuangan() {
     
     // Show modal
     showModal('modalTambahRuangan', 'namaRuangan');
+    
+    // Hentikan event agar tidak ada eksekusi lebih lanjut
+    if (window.event) {
+        window.event.preventDefault();
+        window.event.stopPropagation();
+    }
+    return false;
 }
 
 // Function to handle edit ruangan
@@ -75,11 +82,17 @@ function editRuangan(button) {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Pastikan modal dalam keadaan tertutup saat halaman dimuat
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        modal.style.display = 'none';
+    });
+    
     // Toggle sidebar
     const sidebarToggle = document.getElementById('sidebarToggle');
     if (sidebarToggle) {
         sidebarToggle.addEventListener('click', function() {
-            document.querySelector('.sidebar').classList.toggle('active');
+            document.querySelector('.sidebar').classList.toggle('collapsed');
         });
     }
 
@@ -105,20 +118,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Fungsi simulasi tombol Tambah Ruangan
-    window.tambahRuangan = function() {
-        alert("Modal 'Tambah Ruangan' akan muncul di sini.");
-    };
-
-    // Fungsi untuk menampilkan modal
-    function tambahRuangan() {
-        const modal = document.getElementById('modalTambahRuangan');
-        if (modal) {
-            modal.style.display = 'block';
-        } else {
-            console.error('Modal element not found');
-        }
-    }
+    // Assign the function to window for global access
+    window.tambahRuangan = tambahRuangan;
 
     // Fungsi untuk menutup modal
     function tutupModal(modalId) {
@@ -199,9 +200,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Make functions available globally
-    window.tambahRuangan = tambahRuangan;
     window.tutupModal = tutupModal;
     window.editRuangan = editRuangan;
+    
+    // Pastikan semua modal dalam keadaan tertutup saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', function() {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            modal.style.display = 'none';
+        });
+    });
 
     // Fungsi simulasi Edit
     const editBtns = document.querySelectorAll('.btn-edit');

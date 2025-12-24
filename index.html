@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/sidebar.css">
     <script src="js/main.js" defer></script>
+    <script src="js/sidebar.js"></script>
     
     <style>
         :root {
@@ -402,34 +403,11 @@
 <body>
 
     <div id="sidebar-container">
-        <!-- Sidebar will be loaded here by JavaScript -->
-        <div class="sidebar-overlay"></div>
+        <!--#include virtual="/components/sidebar.html" -->
     </div>
 
     <main class="main-content">
-        <header class="top-header">
-            <div class="header-left">
-                <i class="fa-solid fa-bars" style="cursor: pointer;"></i>
-                <span>Selamat Datang, Pengadilan Negeri Surabaya</span>
-            </div>
-            <div class="header-right">
-                <div class="user-profile">
-                    <div class="user-avatar">A</div>
-                    <div class="user-info">
-                        <h4>Administrator</h4>
-                        <p>admin</p>
-                    </div>
-                </div>
-                <i class="fa-solid fa-arrow-right-from-bracket" style="color: #7f8c8d; cursor: pointer;"></i>
-            </div>
-        </header>
-
         <div class="content-body">
-            <div class="page-title">
-                <h3>Integrasi SIMETRI Badilum</h3>
-                <p>Sinkronisasi data pegawai dan user dari Sistem Informasi Manajemen Terpadu Mahkamah Agung</p>
-            </div>
-
             <div class="cards-container">
                 <div class="status-card card-green">
                     <div class="card-header">
@@ -591,7 +569,6 @@
                     <li>Log sinkronisasi disimpan untuk audit trail</li>
                 </ul>
             </div>
-
         </div>
     </main>
 

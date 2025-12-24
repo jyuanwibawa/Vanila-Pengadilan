@@ -9,30 +9,17 @@
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/parameter-sistem.css">
-    <script src="js/main.js" defer></script>
-    <script src="js/parameter-sistem.js" defer></script>
+    <script src="js/main.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/parameter-sistem.js"></script>
 </head>
 <body>
-    <div id="sidebar-container"></div>
+    <!-- Include Sidebar -->
+    <div id="sidebar-container">
+        <!--#include virtual="/components/sidebar.html" -->
+    </div>
 
-    <main class="main-content">
-        <header class="top-header">
-            <div class="header-left">
-                <i class="fa-solid fa-bars" style="cursor: pointer;" id="sidebarToggle"></i>
-                <span>Selamat Datang, Pengadilan Negeri Surabaya</span>
-            </div>
-            <div class="header-right">
-                <div class="user-profile">
-                    <div class="user-avatar">A</div>
-                    <div class="user-info">
-                        <h4>Administrator</h4>
-                        <p>admin</p>
-                    </div>
-                </div>
-                <i class="fa-solid fa-arrow-right-from-bracket" style="color: #7f8c8d; cursor: pointer; margin-left: 10px;"></i>
-            </div>
-        </header>
-
+    <div class="main-content">
         <div class="content-body">
             <div class="page-title">
                 <h3>Parameter Sistem</h3>
@@ -173,7 +160,7 @@
     </main>
 
     <!-- Modal Tambah Ruangan -->
-    <div id="modalTambahRuangan" class="modal">
+    <div id="modalTambahRuangan" class="modal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Tambah Ruangan Baru</h3>
@@ -220,7 +207,7 @@
     </div>
 
     <!-- Modal Edit Ruangan -->
-    <div id="modalEditRuangan" class="modal">
+    <div id="modalEditRuangan" class="modal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Edit Ruangan</h3>

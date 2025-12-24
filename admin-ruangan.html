@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Ruangan - Pengadilan Negeri Surabaya</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/admin-ruangan.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar-container">
+        <!--#include virtual="/components/sidebar.html" -->
+    </div>
+
+    <div class="main-content">
+        <div class="content-body">
+            <!-- Stats Cards -->
+            <div class="cards-container">
+                <div class="card card-blue">
+                    <div class="card-header">
+                        <span class="card-title">Total Ruangan</span>
+                        <i class="fas fa-door-open card-icon"></i>
+                    </div>
+                    <div class="card-value" data-target="24">0</div>
+                    <div class="card-footer">+2 dari bulan lalu</div>
+                </div>
+
+                <div class="card card-purple">
+                    <div class="card-header">
+                        <span class="card-title">Ruangan Aktif</span>
+                        <i class="fas fa-check-circle card-icon"></i>
+                    </div>
+                    <div class="card-value" data-target="18">0</div>
+                    <div class="card-footer">+3 dari minggu lalu</div>
+                </div>
+
+                <div class="card card-green">
+                    <div class="card-header">
+                        <span class="card-title">Kebersihan Rata-rata</span>
+                        <i class="fas fa-broom card-icon"></i>
+                    </div>
+                    <div class="card-value" data-target="92">0<small>%</small></div>
+                    <div class="card-footer">+5% dari bulan lalu</div>
+                </div>
+
+                <div class="card card-red">
+                    <div class="card-header">
+                        <span class="card-title">Perlu Perhatian</span>
+                        <i class="fas fa-exclamation-triangle card-icon"></i>
+                    </div>
+                    <div class="card-value" data-target="3">0</div>
+                    <div class="card-footer">Ruangan membutuhkan perbaikan</div>
+                </div>
+            </div>
+
+            <!-- Kinerja Administrator -->
+            <div class="performance-container">
+                <div class="admin-performance-card">
+                    <h3 class="section-title">Kinerja per Administrator</h3>
+                    <div class="admin-cards-wrapper">
+                        <!-- Admin Card 1 -->
+                        <div class="admin-card">
+                            <div class="card-header">
+                                <div class="profile-section">
+                                    <div class="avatar"><i class="fa-regular fa-user"></i></div>
+                                    <div class="profile-info">
+                                        <h4>Bambang Wijaya, S.H.</h4>
+                                        <div class="nip">NIP:<br>199003032016031003</div>
+                                    </div>
+                                </div>
+                                <div class="room-info">
+                                    Mengelola
+                                    <span class="room-count">1 Ruangan</span>
+                                </div>
+                            </div>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <span class="stat-label">Total Tugas</span>
+                                    <span class="stat-value">45</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-label">Selesai</span>
+                                    <span class="stat-value text-green">
+                                        43 <span class="stat-sub">(95.6%)</span>
+                                    </span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-label">Kebersihan</span>
+                                    <span class="stat-value text-green">9.2/10</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-label">Komplain</span>
+                                    <span class="stat-value">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Admin Card 1 -->
+
+                        <!-- Admin Card 2 -->
+                        <div class="admin-card">
+                            <div class="card-header">
+                                <div class="profile-section">
+                                    <div class="avatar"><i class="fa-regular fa-user"></i></div>
+                                    <div class="profile-info">
+                                        <h4>Dewi Kartika, S.H., M.H.</h4>
+                                        <div class="nip">NIP:<br>199004042016032004</div>
+                                    </div>
+                                </div>
+                                <div class="room-info">
+                                    Mengelola
+                                    <span class="room-count">1 Ruangan</span>
+                                </div>
+                            </div>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <span class="stat-label">Total Tugas</span>
+                                    <span class="stat-value">40</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-label">Selesai</span>
+                                    <span class="stat-value text-green">
+                                        38 <span class="stat-sub">(95.0%)</span>
+                                    </span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-label">Kebersihan</span>
+                                    <span class="stat-value text-green">8.8/10</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-label">Komplain</span>
+                                    <span class="stat-value">1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Admin Card 2 -->
+
+                        <!-- Admin Card 3 -->
+                        <div class="admin-card">
+                            <div class="card-header">
+                                <div class="profile-section">
+                                    <div class="avatar"><i class="fa-regular fa-user"></i></div>
+                                    <div class="profile-info">
+                                        <h4>Rudi Hartono, S.Sos.</h4>
+                                        <div class="nip">NIP:<br>199005052017031005</div>
+                                    </div>
+                                </div>
+                                <div class="room-info">
+                                    Mengelola
+                                    <span class="room-count">2 Ruangan</span>
+                                </div>
+                            </div>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <span class="stat-label">Total Tugas</span>
+                                    <span class="stat-value">88</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-label">Selesai</span>
+                                    <span class="stat-value text-green">
+                                        84 <span class="stat-sub">(95.5%)</span>
+                                    </span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-label">Kebersihan</span>
+                                    <span class="stat-value text-green">8.8/10</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-label">Komplain</span>
+                                    <span class="stat-value">3</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Admin Card 3 -->
+
+                        <!-- Admin Card 4 -->
+                        <div class="admin-card">
+                            <div class="card-header">
+                                <div class="profile-section">
+                                    <div class="avatar"><i class="fa-regular fa-user"></i></div>
+                                    <div class="profile-info">
+                                        <h4>Ani Rahmawati, S.E.</h4>
+                                        <div class="nip">NIP:<br>199006062017032006</div>
+                                    </div>
+                                </div>
+                                <div class="room-info">
+                                    Mengelola
+                                    <span class="room-count">2 Ruangan</span>
+                                </div>
+                            </div>
+                            <div class="stats-grid">
+                                <div class="stat-box">
+                                    <span class="stat-label">Total Tugas</span>
+                                    <span class="stat-value">83</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-label">Selesai</span>
+                                    <span class="stat-value text-green">
+                                        75 <span class="stat-sub">(90.4%)</span>
+                                    </span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-label">Kebersihan</span>
+                                    <span class="stat-value text-orange">8.1/10</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-label">Komplain</span>
+                                    <span class="stat-value text-red">5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Admin Card 4 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detail Ruangan & Administrator -->
+            <div class="detail-ruangan">
+                <h2 class="section-title">Detail Ruangan & Administrator</h2>
+
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th width="20%">Ruangan</th>
+                                    <th width="25%">Administrator</th>
+                                    <th>Total Tugas</th>
+                                    <th>Selesai</th>
+                                    <th>Kebersihan</th>
+                                    <th>Komplain</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="info-cell">
+                                            <i class="fa-regular fa-building icon-box"></i>
+                                            <div>
+                                                <div class="cell-title">Ruang Sidang</div>
+                                                <div class="cell-subtitle">Lantai 1</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="info-cell">
+                                            <i class="fa-solid fa-user-tie icon-box"></i>
+                                            <div>
+                                                <div class="cell-title">Bambang Wijaya, S.H.</div>
+                                                <div class="cell-subtitle">199003032016031003</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="font-weight: 500;">45</td>
+                                    <td>
+                                        <span class="text-green">43</span> <span class="sub-text">(96%)</span>
+                                    </td>
+                                    <td class="text-green">9.2/10</td>
+                                    <td>0</td>
+                                    <td><span class="badge badge-success">Baik</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="info-cell">
+                                            <i class="fa-regular fa-building icon-box"></i>
+                                            <div>
+                                                <div class="cell-title">Ruang Sidang B</div>
+                                                <div class="cell-subtitle">Lantai 2</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="info-cell">
+                                            <i class="fa-solid fa-user-tie icon-box"></i>
+                                            <div>
+                                                <div class="cell-title">Dewi Kartika, S.H., M.H.</div>
+                                                <div class="cell-subtitle">199004042016032004</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="font-weight: 500;">40</td>
+                                    <td>
+                                        <span class="text-green">38</span> <span class="sub-text">(95%)</span>
+                                    </td>
+                                    <td class="text-green">8.8/10</td>
+                                    <td>1</td>
+                                    <td><span class="badge badge-success">Baik</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="info-cell">
+                                            <i class="fa-regular fa-building icon-box"></i>
+                                            <div>
+                                                <div class="cell-title">Ruang Tunggu</div>
+                                                <div class="cell-subtitle">Lantai 1</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="info-cell">
+                                            <i class="fa-solid fa-user-tie icon-box"></i>
+                                            <div>
+                                                <div class="cell-title">Rudi Hartono, S.Sos.</div>
+                                                <div class="cell-subtitle">199005052017031005</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="font-weight: 500;">38</td>
+                                    <td>
+                                        <span class="text-green">36</span> <span class="sub-text">(95%)</span>
+                                    </td>
+                                    <td class="text-green">8.5/10</td>
+                                    <td>2</td>
+                                    <td><span class="badge badge-success">Baik</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="info-cell">
+                                            <i class="fa-regular fa-building icon-box"></i>
+                                            <div>
+                                                <div class="cell-title">Kantor Administrasi</div>
+                                                <div class="cell-subtitle">Lantai 2</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="info-cell">
+                                            <i class="fa-solid fa-user-tie icon-box"></i>
+                                            <div>
+                                                <div class="cell-title">Ani Rahmawati, S.E.</div>
+                                                <div class="cell-subtitle">199006062017032006</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="font-weight: 500;">35</td>
+                                    <td>
+                                        <span class="text-green">30</span> <span class="sub-text">(86%)</span>
+                                    </td>
+                                    <td class="text-orange">7.5/10</td>
+                                    <td class="text-red">3</td>
+                                    <td><span class="badge badge-warning">Perlu Perhatian</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="info-cell">
+                                            <i class="fa-regular fa-building icon-box"></i>
+                                            <div>
+                                                <div class="cell-title">Toilet Lantai 1</div>
+                                                <div class="cell-subtitle">Lantai 1</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="info-cell">
+                                            <i class="fa-solid fa-user-tie icon-box"></i>
+                                            <div>
+                                                <div class="cell-title">Rudi Hartono, S.Sos.</div>
+                                                <div class="cell-subtitle">199005052017031005</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="font-weight: 500;">50</td>
+                                    <td>
+                                        <span class="text-green">48</span> <span class="sub-text">(96%)</span>
+                                    </td>
+                                    <td class="text-green">9.0/10</td>
+                                    <td>1</td>
+                                    <td><span class="badge badge-success">Baik</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="info-cell">
+                                            <i class="fa-regular fa-building icon-box"></i>
+                                            <div>
+                                                <div class="cell-title">Toilet Lantai 2</div>
+                                                <div class="cell-subtitle">Lantai 2</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="info-cell">
+                                            <i class="fa-solid fa-user-tie icon-box"></i>
+                                            <div>
+                                                <div class="cell-title">Ani Rahmawati, S.E.</div>
+                                                <div class="cell-subtitle">199006062017032006</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="font-weight: 500;">48</td>
+                                    <td>
+                                        <span class="text-green">45</span> <span class="sub-text">(94%)</span>
+                                    </td>
+                                    <td class="text-green">8.7/10</td>
+                                    <td>2</td>
+                                    <td><span class="badge badge-success">Baik</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="info-alert">
+                    <div class="alert-header">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>Informasi Administrator Ruangan</span>
+                    </div>
+                    <ul class="alert-list">
+                        <li>Setiap ruangan secara otomatis memiliki administrator yang bertanggung jawab</li>
+                        <li>Administrator dipilih dari data pegawai SIMETRI</li>
+                        <li>Administrator bertugas mengawasi kebersihan dan pemeliharaan ruangan</li>
+                        <li>Kinerja administrator dipantau berdasarkan tugas selesai, kebersihan, dan komplain</li>
+                        <li>Satu administrator dapat mengelola beberapa ruangan</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/admin-ruangan.js"></script>
+</body>
+</html>
