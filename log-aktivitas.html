@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Aktivitas Sistem</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+        /* --- CSS Variables & Reset --- */
+        :root {
+            --bg-body: #f1f5f9;
+            --bg-white: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+            --color-blue: #3b82f6;
+            --color-green: #22c55e;
+            --color-red: #ef4444;
+            --color-orange: #f59e0b;
+            --color-green-dark: #166534;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--text-dark);
+        }
+
+        .main-content {
+            padding: 1.5rem;
+            margin-left: 10px; /* Disesuaikan dengan lebar sidebar yang lebih sempit */
+            width: calc(100% - 70px); /* Menyesuaikan lebar konten */
+        }
+
+        /* --- Header Section --- */
+        .header-section { 
+            margin-bottom: 1.5rem; 
+        }
+        
+        .header-section h2 { 
+            font-size: 1.5rem; 
+            font-weight: 600; 
+            margin-bottom: 0.5rem; 
+            color: #1e293b;
+        }
+        
+        .header-section p { 
+            color: var(--text-muted); 
+            font-size: 0.9rem; 
+        }
+
+        /* --- Summary Cards Grid --- */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .summary-card {
+            background: var(--bg-white);
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-left-width: 4px;
+            border-left-style: solid;
+        }
+
+        .card-blue { border-left-color: var(--color-blue); }
+        .card-green { border-left-color: var(--color-green); }
+        .card-red { border-left-color: var(--color-red); }
+        .card-orange { border-left-color: var(--color-orange); }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .card-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .text-blue { color: var(--color-blue); }
+        .text-green { color: var(--color-green); }
+        .text-red { color: var(--color-red); }
+        .text-orange { color: var(--color-orange); }
+
+        /* --- Toolbar Section --- */
+        .toolbar-container {
+            background: var(--bg-white);
+            padding: 1rem;
+            border-radius: 0.5rem 0.5rem 0 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1px;
+        }
+
+        .search-wrapper {
+            position: relative;
+            flex: 2;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.625rem 0.75rem 0.625rem 2.5rem;
+            border: 1px solid var(--border-light);
+            border-radius: 0.375rem;
+            outline: none;
+            font-size: 0.875rem;
+            color: var(--text-dark);
+        }
+
+        .form-input::placeholder { 
+            color: #94a3b8; 
+        }
+
+        .filter-placeholder {
+            flex: 1;
+            height: 40px;
+            border: 1px solid var(--border-light);
+            border-radius: 0.375rem;
+            background-color: #fcfcfc;
+        }
+
+        /* --- Footer Section --- */
+        .footer-container {
+            background: var(--bg-white);
+            padding: 1rem;
+            border-radius: 0 0 0.5rem 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .showing-text {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .btn-export {
+            background-color: var(--color-green);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background-color 0.2s;
+        }
+
+        .btn-export:hover {
+            background-color: var(--color-green-dark);
+        }
+
+        /* Table Styles */
+        .table-container {
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* New Activity Log Table Styles */
+        .activity-log-container {
+            margin-top: 2rem;
+        }
+
+        .activity-log-container .card {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .activity-log-container .table-responsive {
+            overflow-x: auto;
+        }
+
+        .activity-log-container .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        .activity-log-container .custom-table thead th {
+            text-align: left;
+            padding: 15px;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background-color: #f8fafc;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .activity-log-container .custom-table tbody tr {
+            border-bottom: 1px solid var(--border-light);
+            transition: background 0.2s;
+        }
+
+        .activity-log-container .custom-table tbody tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .activity-log-container .custom-table td {
+            padding: 15px;
+            vertical-align: middle;
+            font-size: 0.9rem;
+        }
+
+        /* Timestamp Column */
+        .timestamp-col {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            color: var(--text-muted);
+        }
+
+        .timestamp-col i {
+            margin-top: 3px;
+            font-size: 0.8rem;
+        }
+
+        .date-text {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .time-text {
+            display: block;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        /* User Column */
+        .user-col {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 35px;
+            height: 35px;
+            background-color: #f1f5f9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            border: 1px solid #e2e8f0;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .username {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .user-role {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Status Badge */
+        .badge-success {
+            background-color: #dcfce7;
+            color: #166534;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Detail Button */
+        .btn-detail {
+            color: var(--color-blue);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn-detail:hover {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+            
+            .summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .toolbar-container {
+                flex-direction: column;
+            }
+            
+            .search-wrapper,
+            .filter-placeholder {
+                width: 100%;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content {
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar-container">
+        <!--#include virtual="/components/sidebar.html" -->
+    </div>
+
+    <div class="main-content">
+        <div class="content-body">
+            <div class="header-section">
+                <h2>Log Aktivitas Sistem</h2>
+                <p>Monitor dan audit jejak aktivitas seluruh pengguna sistem</p>
+            </div>
+
+            <div class="summary-grid">
+                <div class="summary-card card-blue">
+                    <div class="card-header">
+                        <span>Total Aktivitas</span>
+                        <i class="fa-solid fa-chart-line text-blue"></i>
+                    </div>
+                    <div class="card-value">10</div>
+                </div>
+
+                <div class="summary-card card-green">
+                    <div class="card-header">
+                        <span>Berhasil</span>
+                        <i class="fa-regular fa-circle-check text-green"></i>
+                    </div>
+                    <div class="card-value">8</div>
+                </div>
+
+                <div class="summary-card card-red">
+                    <div class="card-header">
+                        <span>Gagal</span>
+                        <i class="fa-regular fa-circle-xmark text-red"></i>
+                    </div>
+                    <div class="card-value">1</div>
+                </div>
+
+                <div class="summary-card card-orange">
+                    <div class="card-header">
+                        <span>Warning</span>
+                        <i class="fa-solid fa-shield-halved text-orange"></i>
+                    </div>
+                    <div class="card-value">1</div>
+                </div>
+            </div>
+
+            <div class="toolbar-container">
+                <div class="search-wrapper">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" class="form-input" placeholder="Cari user, aktivitas, atau module...">
+                </div>
+                <div class="filter-placeholder"></div>
+                <div class="filter-placeholder"></div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Waktu</th>
+                                <th>User</th>
+                                <th>Aktivitas</th>
+                                <th>Deskripsi</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data log aktivitas akan dimuat di sini -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="footer-container">
+                <span class="showing-text">Menampilkan 10 dari 10 log</span>
+                <button class="btn-export">
+                    <i class="fa-solid fa-download"></i>
+                    Export Log
+                </button>
+            </div>
+
+            <!-- Activity Log Table -->
+            <div class="activity-log-container">
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Timestamp</th>
+                                    <th>User</th>
+                                    <th>Aktivitas</th>
+                                    <th>Module</th>
+                                    <th>IP Address</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <!-- Data akan diisi oleh JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script>
+        // Data Mockup untuk activity log
+        const auditData = [
+            {
+                date: "21 Des 2024",
+                time: "14:35:22",
+                user: "admin",
+                role: "Administrator",
+                activity: "Login ke sistem",
+                module: "Authentication",
+                ip: "192.168.1.100",
+                status: "Berhasil"
+            },
+            {
+                date: "21 Des 2024",
+                time: "14:36:15",
+                user: "admin",
+                role: "Administrator",
+                activity: "Sinkronisasi data SIMETRI",
+                module: "Integrasi SIMETRI",
+                ip: "192.168.1.100",
+                status: "Berhasil"
+            },
+            {
+                date: "21 Des 2024",
+                time: "14:40:30",
+                user: "admin",
+                role: "Administrator",
+                activity: "Menambah ruangan baru",
+                module: "Parameter Sistem",
+                ip: "192.168.1.100",
+                status: "Berhasil"
+            },
+            {
+                date: "21 Des 2024",
+                time: "14:45:12",
+                user: "tu",
+                role: "Tata Usaha",
+                activity: "Login ke sistem",
+                module: "Authentication",
+                ip: "192.168.1.105",
+                status: "Berhasil"
+            }
+        ];
+
+        // Fungsi untuk menampilkan data ke dalam tabel
+        function renderTable(data) {
+            const tableBody = document.getElementById('tableBody');
+            let htmlContent = '';
+
+            data.forEach(item => {
+                htmlContent += `
+                    <tr>
+                        <td>
+                            <div class="timestamp-col">
+                                <i class="far fa-clock"></i>
+                                <div>
+                                    <span class="date-text">${item.date},</span>
+                                    <span class="time-text">${item.time}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="user-col">
+                                <div class="user-avatar">
+                                    <i class="far fa-user"></i>
+                                </div>
+                                <div class="user-info">
+                                    <span class="username">${item.user}</span>
+                                    <span class="user-role">${item.role}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="max-width: 200px;">
+                            ${item.activity}
+                        </td>
+                        <td class="text-muted">
+                            ${item.module}
+                        </td>
+                        <td class="text-muted" style="font-family: monospace;">
+                            ${item.ip}
+                        </td>
+                        <td>
+                            <span class="badge-success">
+                                <i class="fas fa-check"></i> ${item.status}
+                            </span>
+                        </td>
+                        <td>
+                            <a href="#" class="btn-detail">
+                                <i class="far fa-eye"></i> Detail
+                            </a>
+                        </td>
+                    </tr>`;
+            });
+
+            tableBody.innerHTML = htmlContent;
+        }
+
+        // Jalankan saat dokumen selesai dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTable(auditData);
+        });
+    </script>
+</body>
+</html>
